@@ -3,7 +3,7 @@
   "author": "Uri Shaked",
   "editor": "wokwi",
   "parts": [
-    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": -4.76, "attrs": {} },
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
     {
       "type": "wokwi-resistor",
       "id": "r1",
@@ -33,7 +33,14 @@
       "attrs": { "color": "green" }
     },
     { "type": "wokwi-ir-receiver", "id": "ir1", "top": -97.35, "left": 123.02, "attrs": {} },
-    { "type": "wokwi-ir-remote", "id": "remote1", "top": -96, "left": 268.8, "attrs": {} }
+    { "type": "wokwi-ir-remote", "id": "remote1", "top": -96, "left": 268.8, "attrs": {} },
+    {
+      "type": "board-ili9341-cap-touch",
+      "id": "lcd1",
+      "top": -546.44,
+      "left": -38.78,
+      "attrs": {}
+    }
   ],
   "connections": [
     [ "esp:TX", "$serialMonitor:RX", "", [] ],
@@ -42,11 +49,22 @@
     [ "r2:1", "led2:A", "green", [ "h-38.4", "v-19.2" ] ],
     [ "esp:GND.1", "led2:C", "black", [ "h0" ] ],
     [ "esp:GND.1", "led1:C", "black", [ "h0" ] ],
-    [ "esp:26", "r1:2", "green", [ "h0" ] ],
-    [ "r2:2", "esp:27", "green", [ "v0" ] ],
-    [ "ir1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "esp:17", "r1:2", "green", [ "h0" ] ],
+    [ "esp:18", "r2:2", "green", [ "h0" ] ],
+    [ "esp:5V", "ir1:VCC", "red", [ "h0" ] ],
+    [ "ir1:DAT", "esp:1", "green", [ "v0" ] ],
     [ "ir1:GND", "esp:GND.2", "black", [ "v0" ] ],
-    [ "ir1:DAT", "esp:23", "green", [ "v48", "h-67.2" ] ]
+    [ "lcd1:SCK", "esp:12", "blue", [ "v89.37", "h-202.1", "v-19.2" ] ],
+    [ "lcd1:MOSI", "esp:11", "purple", [ "v222.19", "h-451.19", "v-113.66" ] ],
+    [ "lcd1:D/C", "esp:2", "orange", [ "v70.17", "h-175.7", "v-67.24" ] ],
+    [ "lcd1:LED", "esp:6", "green", [ "v214.17", "h-446.55", "v-201.64" ] ],
+    [ "lcd1:SCL", "esp:8", "blue", [ "v243.21", "h-498.53", "v-173.08" ] ],
+    [ "lcd1:SDA", "esp:10", "gold", [ "v234.02", "h-493.69", "v-125.49" ] ],
+    [ "lcd1:RST", "esp:4", "pink", [ "v60.57", "h-154.09", "v-134.4", "h-252.92", "v67.16" ] ],
+    [ "lcd1:MISO", "esp:13", "green", [ "v0" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "lcd1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "lcd1:CS", "esp:15", "green", [ "v0" ] ]
   ],
   "dependencies": {}
 }
